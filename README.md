@@ -3,29 +3,25 @@ JavaによるAkkaトレーニング第4回
 ## アクターとデータベースのシステム(CQRS)
 
 [トレーニングの第3回](https://github.com/mvrck-inc/training-akka-java-3-persistence)では、
-アクターを用いたアプリケーションとデータベースなどの永続化層との接続方法の一つであるイベント・ソーシングを学びました。
+アクターを用いたアプリケーションと、データベースなどの永続化層の接続方法であるイベント・ソーシングを学びました。
 イベント・ソーシングはデータの書き込み側に関する設計パターンですが、それだけではデータの読み込み側が複雑な検索条件で大量のデータを読み取るのが苦手になり不便です。
 このトレーニングではCQRS - Command Query Responsibility Separationと呼ばれる設計パターンの中を使ってイベント・ソーシングでは重視しなかったデータ読み込み側の処理を補完します。
 
-以下に課題を用意したので、それをこなすことがこのトレーニングのゴールです。
-課題の提出方法は後ほど紹介しますが、課題を通じて手を動かすとともに、トレーナーと対話することで学びを促進することが狙いです。
+## 課題
 
-- [課題提出トレーニングのポリシー](./POLICIES.md)
-- [次回のトレーニング: Akkaアクターを用いた非同期処理](https://github.com/mvrck-inc/training-akka-java-3-event-sourcing)
+この課題をこなすことがトレーニングのゴールです。課題を通じて手を動かすとともに、トレーナーと対話することで学びを促進することが狙いです。
+
+- [課題提出トレーニングのポリシー](https://github.com/mvrck-inc/training-akka-java-1-preparation/blob/master/POLICIES.md)
+
 
 ## この課題で身につく能力
 
 - イベント・ソーシングによって永続化層に挿入されたイベントを、Persistence QueryでStream抽出できる
 - Stream抽出したイベントをリレーショナル・データベースに書き込める
 
-## 課題
+### 事前準備:
 
 MacBook前提。
-
-## 課題
-
-
-### 事前準備:
 
 - MySQL8.0.19をローカル開発環境にインストールしてください
   - `brew update`
@@ -37,14 +33,26 @@ MacBook前提。
 
 ### 作業開始:
 
+MacBook前提。
+
 - このレポジトリをgit cloneしてください
   - `git clone git@github.com:mvrck-inc/training-akka-java-4-cqrs.git`
-- akka-persistence-queryをセットアップしてください
 - データベースのセットアップをしてください
   - `CREATE TABLE`を走らせてください(リンク)
-- もうひとつのdef main()を作成してください
-- def main() の中から注文とチケット在庫、2つのRead Journalをスタートしてprintlnください
-- printlnの代わりにMySQLのテーブルに書き込んでください
+- 書き込み側アプリケーションを走らせてください
+  - `mvn compile`
+  - `mvn exec:java -Dexec.mainClass=com.mycompany.app.CommandSideMain`
+- 読み取り側アプリケーションを走らせてください
+  - `mvn compile`
+  - `mvn exec:java -Dexec.mainClass=com.mycompany.app.RadSideMain`
+- curlでデータを挿入してください
+  - レスポンスを確認してください
+  - アプリケーション側のログを確認してください
+- wrk -t2 -c4 -d5s -s wrk-scripts/order.lua http://localhost:8080/orders
+  - t2: 2 threads, c4: 4 http connections, d5: test duration is 5 seconds
+- akka-persistence-queryのセットアップを[確認してください](../)
+- akka-httpのセットアップを[確認してください](../)
+- 読み取り側アプリケーションによるpersistence-queryモジュールの使い方を[確認してください](../)
 
 ### 発展的内容:
 
