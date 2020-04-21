@@ -61,6 +61,11 @@ public class OrderActor extends EventSourcedBehavior<Command, Event, State> {
     return builder.build();
   }
 
+  @Override
+  public Set<String> tagsFor(Event event) {
+    return Set.of("order");
+  }
+
   /********************************************************************************
    *  Actor Messages
    *******************************************************************************/

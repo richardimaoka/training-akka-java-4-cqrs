@@ -5,6 +5,8 @@ import akka.persistence.typed.*;
 import akka.persistence.typed.javadsl.*;
 import org.mvrck.training.actor.TicketStockActor.*;
 
+import java.util.*;
+
 public class TicketStockActor extends EventSourcedBehavior<Command, Event, State> {
 
   /********************************************************************************
@@ -80,6 +82,11 @@ public class TicketStockActor extends EventSourcedBehavior<Command, Event, State
       .onEvent(SoldOut.class, (state, event) -> new OutOfStock(state.ticketId));
 
     return builder.build();
+  }
+
+  @Override
+  public Set<String> tagsFor(Event event) {
+    return Set.of("ticket-stock");
   }
 
   /********************************************************************************
