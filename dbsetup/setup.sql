@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS traininig_akka_java_3_persistence;
-USE traininig_akka_java_3_persistence;
+CREATE DATABASE IF NOT EXISTS traininig_akka_java_4_cqrs;
+USE traininig_akka_java_4_cqrs;
 
 DROP TABLE IF EXISTS journal;
 
