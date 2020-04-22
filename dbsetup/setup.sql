@@ -22,3 +22,27 @@ CREATE TABLE IF NOT EXISTS snapshot (
   snapshot BLOB NOT NULL,
   PRIMARY KEY (persistence_id, sequence_number)
 );
+
+DROP TABLE IF EXISTS ticket_stocks;
+
+CREATE TABLE ticket_stocks (
+  `ticket_id` INT NOT NULL,
+  `quantity` INT NOT NULL,
+  PRIMARY KEY(`ticket_id`)
+  -- FOREIGN KEY(`ticket_id`) REFERENCES tickets(`id`),
+) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS orders;
+
+CREATE TABLE orders (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `ticket_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `quantity` INT NOT NULL,
+  PRIMARY KEY(`id`),
+  FOREIGN KEY(`ticket_id`) REFERENCES ticket_stocks(`ticket_id`),
+  -- 本来ならticketsテーブルがあるはずで、以下のようになる
+  -- FOREIGN KEY(`ticket_id`) REFERENCES tickets(`id`)
+  -- また、usersテーブルもあるはず
+  -- FOREIGN KEY(`user_id`) REFERENCES users(`id`)
+) ENGINE=InnoDB;
