@@ -20,9 +20,9 @@ public class AppConfig implements Config {
   private AppConfig() {
     try {
       var typeSafeConfig = com.typesafe.config.ConfigFactory.load();
-      var url = typeSafeConfig.getString("database.url");
-      var user = typeSafeConfig.getString("database.user");
-      var password = typeSafeConfig.getString("database.password");
+      var url = typeSafeConfig.getString("slick.db.url");
+      var user = typeSafeConfig.getString("slick.db.user");
+      var password = typeSafeConfig.getString("slick.db.password");
       dialect = new MysqlDialect();
       dataSource = new LocalTransactionDataSource(url, user, password);
       transactionManager = new LocalTransactionManager(dataSource.getLocalTransaction(getJdbcLogger()));
