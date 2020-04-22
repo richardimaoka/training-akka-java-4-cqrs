@@ -1,8 +1,6 @@
 CREATE DATABASE IF NOT EXISTS traininig_akka_java_4_cqrs;
 USE traininig_akka_java_4_cqrs;
 
-DROP TABLE IF EXISTS journal;
-
 CREATE TABLE IF NOT EXISTS journal (
   ordering SERIAL,
   persistence_id VARCHAR(255) NOT NULL,
@@ -13,7 +11,6 @@ CREATE TABLE IF NOT EXISTS journal (
   PRIMARY KEY(persistence_id, sequence_number)
 );
 
-DROP TABLE IF EXISTS snapshot;
 
 CREATE TABLE IF NOT EXISTS snapshot (
   persistence_id VARCHAR(255) NOT NULL,
@@ -23,16 +20,12 @@ CREATE TABLE IF NOT EXISTS snapshot (
   PRIMARY KEY (persistence_id, sequence_number)
 );
 
-DROP TABLE IF EXISTS ticket_stocks;
-
 CREATE TABLE ticket_stocks (
   `ticket_id` INT NOT NULL,
   `quantity` INT NOT NULL,
   PRIMARY KEY(`ticket_id`)
   -- FOREIGN KEY(`ticket_id`) REFERENCES tickets(`id`),
 ) ENGINE=InnoDB;
-
-DROP TABLE IF EXISTS orders;
 
 CREATE TABLE orders (
   `id` INT NOT NULL AUTO_INCREMENT,
