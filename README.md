@@ -53,6 +53,7 @@ MacBook前提。
 - akka-persistenceのセットアップを確認してください
   - [application.conf](./src/main/resources/application.conf) - 参考 akka-persistence-jdbcプラグインのデフォルト設定([リンク](https://github.com/akka/akka-persistence-jdbc/blob/v3.5.3/src/test/resources/mysql-application.conf))
   - [pom.xml](./pom.xml)
+  - tagsFor
 - ReadSideのMainを確認してください
 
 ### 発展的内容:
