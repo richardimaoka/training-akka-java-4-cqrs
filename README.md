@@ -38,10 +38,13 @@ MacBook前提。
 - アプリケーションを走らせてください
   - `mvn compile`
   - `mvn exec:java -Dexec.mainClass=org.mvrck.training.app.Main`
+  - `mvn exec:java -Dexec.mainClass=org.mvrck.training.app.ReadSideMain`
 - curlでデータを挿入してください
   - `curl -X POST -H "Content-Type: application/json" -d "{\"ticket_id\": 1, \"user_id\": 2, \"quantity\": 1}"  http://localhost:8080/orders`
   - クライアント側ログからレスポンスを確認してください
-  - データベースでjournalテーブル、ticket_stocksテーブルとordersテーブルを確認してください ([select.sql](./dbsetup/select.sql)) 
+  - データベースでjournalテーブル、ticket_stocksテーブルとordersテーブルを確認してください ([select.sql](./dbsetup/select.sql))
+- ReadSideMainをリスタートしてください
+  - なぜかTicketStockActorのイベントが読み込まれない… 
 - wrkでベンチマークを走らせてください
   - `wrk -t2 -c4 -d5s -s wrk-scripts/order.lua http://localhost:8080/orders`
     - `-t2`: 2 threads
