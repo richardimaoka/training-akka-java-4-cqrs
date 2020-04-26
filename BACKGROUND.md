@@ -16,10 +16,10 @@
 これでは抽出や集計の際に困ってしまいます。データベースと違い、アクターは大量のデータから抽出、集計するのに向いていないからです。
 
 <p align="center">
-  <img width=640 src="https://user-images.githubusercontent.com/7414320/80295942-2735ff00-87b2-11ea-9580-4f752943a447.png">
+  <img width=640 src="https://user-images.githubusercontent.com/7414320/80296108-42553e80-87b3-11ea-851e-9a04cb638510.png">
 </p>
 <p align="center">
-  <img width=640 src="https://user-images.githubusercontent.com/7414320/80295943-28672c00-87b2-11ea-820e-4598168ba05e.png">
+  <img width=640 src="https://user-images.githubusercontent.com/7414320/80296107-41bca800-87b3-11ea-8006-5271a1f8f527.png">
 </p>
 
 この問題への対処法は書き込み側はイベント・ソーシングを、読み込み側は別の設計を用いることです。
