@@ -36,7 +36,7 @@ public class OrderActor extends EventSourcedBehavior<Command, Event, State> {
       .forStateType(Initialized.class)
       .onCommand(CreateOrder.class,
         command -> Effect()
-          .persist(new OrderCreated(command.ticketId, command.userId, command.quantity))
+          .persist(new OrderCreated(command.id, command.ticketId, command.userId, command.quantity))
           .thenReply(command.sender, state -> new GetOrderResponse(command.ticketId, command.userId, command.quantity)));
 
     builder
@@ -72,12 +72,14 @@ public class OrderActor extends EventSourcedBehavior<Command, Event, State> {
   public interface Command {}
 
   public static final class CreateOrder implements Command {
+    public String id;
     public final int ticketId;
     public final int userId;
     public final int quantity;
     public final ActorRef<Response> sender;
 
-    public CreateOrder(int ticketId, int userId, int quantity, ActorRef<Response> sender) {
+    public CreateOrder(String id, int ticketId, int userId, int quantity, ActorRef<Response> sender) {
+      this.id = id;
       this.ticketId = ticketId;
       this.userId = userId;
       this.quantity = quantity;
@@ -101,11 +103,13 @@ public class OrderActor extends EventSourcedBehavior<Command, Event, State> {
   public interface Event {}
 
   public static final class OrderCreated implements Event {
+    public String id;
     public int ticketId;
     public int userId;
     public int quantity;
 
-    public OrderCreated(int ticketId, int userId, int quantity) {
+    public OrderCreated(String id, int ticketId, int userId, int quantity) {
+      this.id = id;
       this.ticketId = ticketId;
       this.userId = userId;
       this.quantity = quantity;

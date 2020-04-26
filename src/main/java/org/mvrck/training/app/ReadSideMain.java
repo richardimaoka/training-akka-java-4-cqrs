@@ -12,7 +12,7 @@ import org.mvrck.training.entity.*;
 
 public class ReadSideMain {
   public static void main(String[] array) {
-    var system = ActorSystem.create(Behaviors.empty(), "readside-guardian");
+    var system = ActorSystem.create(Behaviors.empty(), "MaverickTraining");
     var journal = PersistenceQuery.get(system).getReadJournalFor(JdbcReadJournal.class, JdbcReadJournal.Identifier());
 
     var transactionManager = AppConfig.singleton().getTransactionManager();
@@ -55,6 +55,7 @@ public class ReadSideMain {
           if(envelope.event() instanceof OrderActor.OrderCreated) {
             var event = (OrderActor.OrderCreated) envelope.event();
             var entity = new Order();
+            entity.setId(event.id);
             entity.setTicketId(event.ticketId);
             entity.setUserId(event.userId);
             entity.setQuantity(event.quantity);

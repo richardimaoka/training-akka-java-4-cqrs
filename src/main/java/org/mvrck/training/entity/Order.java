@@ -6,8 +6,7 @@ import org.seasar.doma.*;
 @Table(name = "orders")
 public class Order {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  Integer id;
+  String id;
 
   @Column(name = "ticket_id")
   Integer ticketId;
@@ -17,6 +16,14 @@ public class Order {
 
   @Column(name = "quantity")
   Integer quantity;
+
+  public String getId() {
+    return this.id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
 
   public int getTicketId() {
     return this.ticketId;
