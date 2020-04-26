@@ -1,10 +1,11 @@
-package org.mvrck.training.http;
+package org.mvrck.training.app;
 
 import akka.actor.typed.*;
 import akka.actor.typed.javadsl.*;
 import akka.http.javadsl.*;
 import akka.stream.*;
 import org.mvrck.training.actor.*;
+import org.mvrck.training.http.*;
 
 public class GuardianActor {
   /********************************************************************************
