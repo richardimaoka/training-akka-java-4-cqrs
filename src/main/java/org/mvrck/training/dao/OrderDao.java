@@ -7,6 +7,6 @@ import org.seasar.doma.*;
 @Dao(config = AppConfig.class)
 public interface OrderDao {
 
-  @Insert
+  @Insert(sqlFile = true)
   int insert(Order order);
 }

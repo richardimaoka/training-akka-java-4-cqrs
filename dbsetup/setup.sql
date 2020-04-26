@@ -28,7 +28,7 @@ CREATE TABLE ticket_stocks (
 ) ENGINE=InnoDB;
 
 CREATE TABLE orders (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` VARCHAR(255) NOT NULL,
   `ticket_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `quantity` INT NOT NULL,

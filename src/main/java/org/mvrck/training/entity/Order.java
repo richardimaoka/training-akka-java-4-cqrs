@@ -6,6 +6,7 @@ import org.seasar.doma.*;
 @Table(name = "orders")
 public class Order {
   @Id
+  @Column(name = "id")
   String id;
 
   @Column(name = "ticket_id")
