@@ -33,7 +33,7 @@ CREATE TABLE orders (
   `user_id` INT NOT NULL,
   `quantity` INT NOT NULL,
   PRIMARY KEY(`id`),
-  FOREIGN KEY(`ticket_id`) REFERENCES ticket_stocks(`ticket_id`),
+  FOREIGN KEY(`ticket_id`) REFERENCES ticket_stocks(`ticket_id`)
   -- 本来ならticketsテーブルがあるはずで、以下のようになる
   -- FOREIGN KEY(`ticket_id`) REFERENCES tickets(`id`)
   -- また、usersテーブルもあるはず
