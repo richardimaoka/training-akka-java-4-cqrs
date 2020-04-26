@@ -31,10 +31,10 @@ public class AppConfig implements Config {
     }
   }
 
-//  @Override
-//  public JdbcLogger getJdbcLogger() {
-//    return new JdbcNoLogging();
-//  }
+  @Override
+  public JdbcLogger getJdbcLogger() {
+    return new JdbcNoLogging();
+  }
 
   @Override
   public Dialect getDialect() {

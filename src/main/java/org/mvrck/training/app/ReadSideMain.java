@@ -26,6 +26,7 @@ public class ReadSideMain {
           if(envelope.event() instanceof TicketStockActor.TicketStockCreated) {
             var event = (TicketStockActor.TicketStockCreated) envelope.event();
             var entity = new TicketStock();
+            System.out.println("TicketStockCreated: " + event.ticketId + ", " + event.quantity);
             entity.setTickeId(event.ticketId);
             entity.setQuantity(event.quantity);
             transactionManager.required(() -> {
@@ -34,6 +35,7 @@ public class ReadSideMain {
 
           } else if (envelope.event() instanceof TicketStockActor.OrderProcessed) {
             var event = (TicketStockActor.OrderProcessed) envelope.event();
+            System.out.println("OrderProcessed:     " + event.ticketId + ", " + event.newQuantity);
             var entity = new TicketStock();
             entity.setTickeId(event.ticketId);
             entity.setQuantity(event.newQuantity);
@@ -48,12 +50,16 @@ public class ReadSideMain {
         system
       );
 
+    System.out.println("----------------------------------------------");
+    System.out.println("----------------------------------------------");
+
     journal
       .eventsByTag("order", Offset.noOffset())
       .runForeach(
         envelope -> {
           if(envelope.event() instanceof OrderActor.OrderCreated) {
             var event = (OrderActor.OrderCreated) envelope.event();
+            System.out.println("OrderCreated:       " + event.id + ", " + event.ticketId + ", " + event.userId + ", " + event.quantity);
             var entity = new Order();
             entity.setId(event.id);
             entity.setTicketId(event.ticketId);
