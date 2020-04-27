@@ -48,9 +48,8 @@ MacBook前提。
 - curlでデータを挿入してください
   - `curl -X POST -H "Content-Type: application/json" -d "{\"ticket_id\": 1, \"user_id\": 2, \"quantity\": 1}"  http://localhost:8080/orders`
   - クライアント側ログからレスポンスを確認してください
+  - サーバー側ログを確認してください
   - データベースでjournalテーブル、ticket_stocksテーブルとordersテーブルを確認してください ([select.sql](./dbsetup/select.sql))
-- ReadSideMainをリスタートしてください
-  - なぜかTicketStockActorのイベントが読み込まれない… 
 - wrkでベンチマークを走らせてください
   - `wrk -t2 -c4 -d5s -s wrk-scripts/order.lua http://localhost:8080/orders`
     - `-t2`: 2 threads
@@ -65,23 +64,10 @@ MacBook前提。
   - tagsFor
 - ReadSideのMainを確認してください
 
-### 発展的内容:
-
-- 状態遷移図で売り切れ後のチケット追加販売を考えてください
-- 状態遷移図でオーダーのキャンセルを考慮してください
-- 状態遷移図でイベントの中止、払い戻しを考えてください
-- 状態遷移図で先着と抽選の2通りを考えてください
-- 状態遷移図で複数チケットの同時購入を考えてください
-- 不正データのハンドリング、業務例外を考えてください
-  - 不正なオーダーを弾いてください(年齢制限、不正なチケット種別の組み合わせ、などなど) 
-  - 購入履歴と照らし合わせた不正な購入を防いでください
-- asyncテストが必要となるテストケース例を考えてINSTRUCTIONください
-- コンサート以外に、スポーツや映画、入場券のみイベントを実現するテーブルを考えてください
-
 ## 説明
 
 - [課題背景](./BACKGROUND.md)
-- [課題手順の詳細](./.md)
+- [課題手順の詳細](./INSTRUCTION.md)
 
 ## 参考文献・資料
 
