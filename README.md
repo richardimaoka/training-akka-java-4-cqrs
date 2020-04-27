@@ -40,7 +40,8 @@ MacBook前提。
 
 - このレポジトリをgit cloneしてください
   - `git clone git@github.com:mvrck-inc/training-akka-java-4-cqrs.git`
-- データベースのセットアップをしてください ([setup.sql](./dbsetup/setup.sql)) - 参考: akka-persistence-jdbcプラグインのデフォルト・テーブル構成([リンク](https://github.com/akka/akka-persistence-jdbc/blob/v3.5.3/src/test/resources/schema/mysql/mysql-schema.sql))
+- データベースのセットアップをしてください ([setup.sql](./dbsetup/setup.sql)) 
+  - 参考: akka-persistence-jdbcプラグインのデフォルト・テーブル構成([リンク](https://github.com/akka/akka-persistence-jdbc/blob/v3.5.3/src/test/resources/schema/mysql/mysql-schema.sql))
 - アプリケーションを走らせてください
   - `mvn compile`
   - `mvn exec:java -Dexec.mainClass=org.mvrck.training.app.Main`
@@ -59,10 +60,12 @@ MacBook前提。
     - クライアント側の実行結果を確認してください
     - データベースでjournalテーブル、ticket_stocksテーブルとordersテーブルを確認してください ([select.sql](./dbsetup/select.sql)) 
 - akka-persistenceのセットアップを確認してください
-  - [application.conf](./src/main/resources/application.conf) - 参考 akka-persistence-jdbcプラグインのデフォルト設定([リンク](https://github.com/akka/akka-persistence-jdbc/blob/v3.5.3/src/test/resources/mysql-application.conf))
+  - [application.conf](./src/main/resources/application.conf)
+    - 参考 akka-persistence-jdbcプラグインのデフォルト設定([リンク](https://github.com/akka/akka-persistence-jdbc/blob/v3.5.3/src/test/resources/mysql-application.conf))
   - [pom.xml](./pom.xml)
-  - tagsFor
-- ReadSideのMainを確認してください
+  - TicketStockActor [tagsFor()](https://github.com/mvrck-inc/training-akka-java-4-cqrs/blob/master/src/main/java/org/mvrck/training/actor/TicketStockActor.java#L88)
+  - OrderActor [tagsFor()](https://github.com/mvrck-inc/training-akka-java-4-cqrs/blob/master/src/main/java/org/mvrck/training/actor/OrderActor.java#L65)
+- ReadSideのMainを[確認してください](./src/main/java/org/mvrck/training/app/ReadSide.java)
 
 ## 説明
 
