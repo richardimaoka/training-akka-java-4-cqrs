@@ -50,9 +50,6 @@ public class ReadSideMain {
         system
       );
 
-    System.out.println("----------------------------------------------");
-    System.out.println("----------------------------------------------");
-
     journal
       .eventsByTag("order", Offset.noOffset())
       .runForeach(
